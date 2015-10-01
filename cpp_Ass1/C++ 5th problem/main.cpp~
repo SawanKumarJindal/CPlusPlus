@@ -1,0 +1,108 @@
+#include <iostream>
+#include<fstream>
+#include<iomanip>
+#include<string>
+#include<map>
+//#include<boost/algorithm/string/trim.hpp>
+using namespace std;
+
+int main(int a,char * args[])
+{
+	ifstream inputfile;
+	map<string, int> map1;
+	typedef map<string, int>::value_type Pair;
+	map<string, int>::iterator p;
+	int x=0;
+  	if(a>0)
+     	{
+	//cout << "h" << endl;
+	inputfile.open(args[1],ios::in);
+	if(inputfile.is_open() && inputfile.good())
+	{
+		//cout << "he" << endl;
+       	 while(!inputfile.eof())
+	{
+		
+			//cout << "hel" << endl;
+		string str="",str1="";
+		//cout << "AA"<< endl;
+		getline(inputfile,str,' ');
+		if(str==""){
+		continue;}
+		//cout << ":"<<str<<":"<< endl;
+		//trim(str);
+		if(str.length() > 0){
+		if(str.at(str.length()-1) == 10){
+			//cout << "SAale" << endl;
+			str=str.substr(0,str.size()-1);}
+			//cout << "hell" << endl;
+		for(int i=0;i<str.length();i++)
+		{
+			int j;
+			//	cout << "hello" << endl;
+			if((int)str.at(i) ==39)
+			{
+				if(i==0)
+				{
+				//	cout << "hello j" << endl;
+					if((int)str.at(str.length()-1) ==39)
+					{
+						for(int k=1;k<str.length()-1;k++)
+						{
+							//	cout << "hello ji" << endl;
+							str1 +=	str.at(k);						
+						}
+						//cout << "hello ji h" << endl;
+						break;
+					}
+						
+					else
+					{
+						str1=str;
+						break;
+					}
+				}
+				else
+				{
+					//cout << "hello ji he" << endl;
+					str1=str;
+					break;
+				}
+			}	
+			else if((int)str.at(i) > 90 && (int)str.at(i) < 97 ||(int)str.at(i) > 122 ||(int)str.at(i) <65)
+			{
+					//cout << "hello ji hel" << endl;
+				/*j=i-1;
+				for(int k=0;k<=j;k++)
+				{
+					str1 =	str.at(k);
+					
+				}*/	break;
+			}
+			else
+				str1 +=	str.at(i);
+				//cout << "hello ji hell" << endl;
+		}
+		
+			}
+		
+		cout << "Str1:: "<<str1<<" :::str:: "<<str<<endl;	
+		p = map1.find(str1);
+		//	cout << "hello ji hello" << endl;
+		if (p == map1.end()){
+			map1.insert(Pair(str1,1));		
+		}	
+		else{
+			long int count = p->second;
+			p->second = ++count;
+		}
+		
+		if(inputfile.eof())
+		break;
+	}
+	for (p = map1.begin(); p != map1.end(); p++)
+cout << p->first << ": " << p->second << endl;
+	}
+	}
+   
+}

@@ -1,0 +1,70 @@
+#ifndef __TIME_H__
+#define __TIME_H__
+#include <string>
+using namespace std;
+   /**
+    * This class manages time using overloaded operators.  
+    */
+class Time
+{
+     public:
+     /**
+    * This is the constructor which will initialise the value of seconds to zero.  
+    */
+     Time();
+    /**
+    * Time constructor which will convert it into seconds.   
+    */
+     Time( std::string time );
+    /**
+    * This is the constructor which will initialise the value of seconds to seconds.  
+    */
+     Time( int _seconds );
+     /**
+    * This setTime method converts the value of time into seconds.  
+    */
+     void setTime( std::string time );
+    /*
+     * Using ostringstream to convert from int to string. 
+     */
+     std::string str() const;
+    /**
+    * This is the overloading of < operator which will return true or false.  
+    */
+     bool operator< (const Time &t) const;
+     /**
+    * This is the overloading of > operator which will return true or false.  
+    */
+     bool operator> (const Time &t) const;
+    /**
+    * This is the overloading of = operator which will return true or false.  
+    */
+     bool operator= (const Time &t);
+     /**
+    * This is the overloading of / operator which will return int value.  
+    */
+     int operator/(const int t) const;
+     /**
+    * This is the overloading of + operator which will return reference value.  
+    */
+     Time& operator+ (const Time &t);
+    /**
+    * This is the overloading of == operator which will return true or false.  
+    */
+     bool operator== (const Time &t) const;
+    /**
+    * This is the overloading of << operator which will print the value .  
+    */
+     friend std::ostream& operator<<(std::ostream& , const Time& );
+     /**
+    * This is the overloading of >> operator which will take the value and  return it..  
+    */
+     friend std::istream& operator>>(std::istream& , Time&);
+     /**
+    * This is the method which will return the value of seconds .  
+    */
+     int inSec();
+     private:
+     int seconds;
+};
+#endif

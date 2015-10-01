@@ -1,0 +1,49 @@
+#include <iostream>
+#include "Time.h"
+#include<sstream>
+using namespace std;
+
+/* Your code here */
+
+int main()
+{
+ /* This is the main method from where the execution will begin
+ * It will take the first string and convert it into seconds and 
+ * then add it into the object and then it will take the entire line and 
+ * one by one it will check the operator and then will operate on the values.
+ */cout << "()1";
+ Time time,time1;
+   string str,str1,str2,str3;
+ int i=0;
+cout << "--1";
+   cin >> str1;
+cout << "-1";
+  time1.setTime(str1);
+   time.add(time1);
+   do
+   {
+ cout << "1";
+      getline( cin, str );
+     for(i<(str.size()+1)/2;i++)
+    {
+      istringstream iss(str);
+      cout <<"2";
+      iss >> str2 >> str3;
+   if(str2=="+")
+	{
+     time1.setTime(str3);
+   time.add(time1);
+    cout << "3";
+	}
+     if(str2=="-")
+     {
+    time1.setTime(str3);
+     time.subtract(time1);
+ cout << "4";
+     }
+ cout << "5";
+   }
+cout << time.str();
+   } while ( !cin.eof() );
+ // cout << time.str();
+}

@@ -1,0 +1,72 @@
+/**
+ * Time.cpp
+ * For use with 4003-703-01, Homework 2
+ * Winter 2012
+ * Department of Computer Science
+ * Rochester Institute of Technology
+ * Author: Travis Brown
+ */
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include "Time.h"
+
+using namespace std;
+
+Time::Time( void )
+{
+   seconds = 0;
+}
+
+Time::Time( int _seconds )
+{
+   seconds = _seconds;
+}
+
+Time::Time( string t )
+{
+   setTime( t );
+}
+
+Time Time::add( Time t )
+{
+   return seconds += t.seconds;
+}
+
+Time Time::subtract( Time t )
+{
+   return seconds -= t.seconds;
+}
+
+std::string Time::str() const
+{
+   /* Use ostringstream to convert from int to string. This will be covered in
+    * detail in week 8
+    */
+   ostringstream oss;
+   oss << seconds / 3600 << ":" << setfill('0') << setw(2) << ( seconds % 3600 ) / 60;
+   return oss.str();
+
+}
+
+void Time::setTime( std::string t )
+{
+/* This method will take string and firstly it will convert that string 
+ * into temperary strings with the help of delimiter method. Using
+ * istringstream I am converting that temproary string variable to 
+ * int and tyhe converting it to seconds.
+ */
+string str1,str2;
+int hour,min,sec;
+string delimiter = ":";
+str1 = t.substr(0, t.find(delimiter));
+str2= t.substr(t.find(delimiter));
+istringstream iss1(str1);
+iss1 >> hour;
+istringstream iss2(str2);
+iss2 >> min;
+
+sec= hour * 3600 + min * 60;
+}
+
